@@ -22,42 +22,36 @@ body {
 
 .layout {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap);
-    align-items: start;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
     max-width: var(--max-width);
-    padding: 100p 20px;
+    padding: 40px 20px;
     margin: 0 auto;
 }
 
-/* Left column (image) */
-.left {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+.col {
+    padding: 0 24px;
 }
 
-.left img {
+.col+.col {
+    border-left: 1px solid var(--accent);
+}
+
+.col h2 {
+    margin: 0 0 16px 0;
+}
+
+.col img {
     width: 100%;
     max-width: 250px;
     height: auto;
     display: block;
     object-fit: cover;
+    margin-bottom: 16px;
 }
 
-/* Center column */
-.center header {
-    margin-bottom: 24px;
-}
-
-
-.center p {
-    margin: 20px 0;
-}
-
-/* Right column*/
-.right h2 {
-    margin: 0 0 12px 0;
+.col p {
+    margin: 16px 0;
 }
 
 
@@ -110,12 +104,12 @@ body:has(#lock) {
         padding: 24px;
     }
 
-    .left {
-        order: -1;
-        margin-bottom: 12px;
+    .col {
+        padding: 24px 0;
     }
 
-    .right {
-        margin-top: 16px;
+    .col+.col {
+        border-left: none;
+        border-top: 1px solid var(--accent);
     }
 }
