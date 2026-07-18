@@ -21,13 +21,13 @@
     <div id="lock">
         <form id="lock-form">
             <label for="lock-password">Password</label>
-            <input type="password" id="lock-password" autocomplete="off" autofocus>
+            <input type="password" id="lock-password" autocomplete="off" aria-describedby="lock-error" autofocus>
             <button type="submit">Enter</button>
-            <p id="lock-error" hidden>Wrong password.</p>
+            <p id="lock-error" role="alert" hidden>Wrong password.</p>
         </form>
     </div>
 
-    <main class="layout">
+    <main class="layout" inert>
         <aside class="left">
             <img src="media/nabeel.jpeg" alt="Nabeel Chollampat">
         </aside>
@@ -36,7 +36,7 @@
             <header>
                 <h4>
                     Hi, I'm Nabeel Chollampat. I'm a writer, educator, and freelance podcast producer based in
-                    Syracuse, NY.<h4>
+                    Syracuse, NY.</h4>
             </header>
 
             <div class="content">
@@ -76,17 +76,27 @@
         (function () {
             var PASSWORD = "lowdown";
             var lock = document.getElementById("lock");
+            var main = document.querySelector("main");
 
-            if (localStorage.getItem("site-unlocked") === "1") {
+            function unlock(remember) {
+                if (remember) {
+                    try { localStorage.setItem("site-unlocked", "1"); } catch (e) { }
+                }
                 lock.remove();
+                main.removeAttribute("inert");
+            }
+
+            var stored = null;
+            try { stored = localStorage.getItem("site-unlocked"); } catch (e) { }
+            if (stored === "1") {
+                unlock(false);
                 return;
             }
 
             document.getElementById("lock-form").addEventListener("submit", function (e) {
                 e.preventDefault();
                 if (document.getElementById("lock-password").value === PASSWORD) {
-                    localStorage.setItem("site-unlocked", "1");
-                    lock.remove();
+                    unlock(true);
                 } else {
                     document.getElementById("lock-error").hidden = false;
                 }
