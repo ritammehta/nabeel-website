@@ -17,6 +17,7 @@ body {
 
 body {
     margin: 0;
+    font-family: 'Luxurious Roman', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -34,12 +35,6 @@ body {
 
 .col+.col {
     border-left: 1px solid var(--accent);
-}
-
-h2,
-h3 {
-    font-family: 'Luxurious Roman', serif;
-    font-weight: 400;
 }
 
 .col h2 {
