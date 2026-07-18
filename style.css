@@ -36,6 +36,12 @@ body {
     border-left: 1px solid var(--accent);
 }
 
+h2,
+h3 {
+    font-family: 'Luxurious Roman', serif;
+    font-weight: 400;
+}
+
 .col h2 {
     margin: 0 0 16px 0;
 }
