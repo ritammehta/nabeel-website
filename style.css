@@ -42,7 +42,6 @@ body {
 
 .col img {
     width: 100%;
-    max-width: 250px;
     height: auto;
     display: block;
     object-fit: cover;
