@@ -18,6 +18,15 @@
 </head>
 
 <body>
+    <div id="lock">
+        <form id="lock-form">
+            <label for="lock-password">Password</label>
+            <input type="password" id="lock-password" autocomplete="off" autofocus>
+            <button type="submit">Enter</button>
+            <p id="lock-error" hidden>Wrong password.</p>
+        </form>
+    </div>
+
     <main class="layout">
         <aside class="left">
             <img src="media/nabeel.jpeg" alt="Nabeel Chollampat">
@@ -62,6 +71,28 @@
             </ul>
         </aside>
     </main>
+
+    <script>
+        (function () {
+            var PASSWORD = "lowdown";
+            var lock = document.getElementById("lock");
+
+            if (localStorage.getItem("site-unlocked") === "1") {
+                lock.remove();
+                return;
+            }
+
+            document.getElementById("lock-form").addEventListener("submit", function (e) {
+                e.preventDefault();
+                if (document.getElementById("lock-password").value === PASSWORD) {
+                    localStorage.setItem("site-unlocked", "1");
+                    lock.remove();
+                } else {
+                    document.getElementById("lock-error").hidden = false;
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
