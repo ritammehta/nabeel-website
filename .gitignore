@@ -141,3 +141,5 @@ vite.config.ts.timestamp-*
 
 # Ds Store
 .DS_Store
+# Worktrees
+.worktrees/
