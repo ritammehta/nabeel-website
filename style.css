@@ -16,6 +16,7 @@ body {
 }
 
 body {
+    margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -25,12 +26,13 @@ body {
     grid-template-columns: repeat(4, 1fr);
     align-items: stretch;
     max-width: var(--max-width);
-    padding: 40px 20px;
+    min-height: 100vh;
+    padding: 0 20px;
     margin: 0 auto;
 }
 
 .col {
-    padding: 0 24px;
+    padding: 40px 24px;
 }
 
 .col+.col {
