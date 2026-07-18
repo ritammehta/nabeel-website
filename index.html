@@ -18,16 +18,7 @@
 </head>
 
 <body>
-    <div id="lock">
-        <form id="lock-form">
-            <label for="lock-password">Password</label>
-            <input type="password" id="lock-password" autocomplete="off" aria-describedby="lock-error" autofocus>
-            <button type="submit">Enter</button>
-            <p id="lock-error" role="alert" hidden>Wrong password.</p>
-        </form>
-    </div>
-
-    <main class="layout" inert>
+    <main class="layout">
         <section class="col">
             <h2>About</h2>
             <img src="media/nabeel.jpeg" alt="Nabeel Chollampat">
@@ -94,38 +85,6 @@
             <p><a href="resume.pdf">Resume</a></p>
         </section>
     </main>
-
-    <script>
-        (function () {
-            var PASSWORD = "lowdown";
-            var lock = document.getElementById("lock");
-            var main = document.querySelector("main");
-
-            function unlock(remember) {
-                if (remember) {
-                    try { localStorage.setItem("site-unlocked", "1"); } catch (e) { }
-                }
-                lock.remove();
-                main.removeAttribute("inert");
-            }
-
-            var stored = null;
-            try { stored = localStorage.getItem("site-unlocked"); } catch (e) { }
-            if (stored === "1") {
-                unlock(false);
-                return;
-            }
-
-            document.getElementById("lock-form").addEventListener("submit", function (e) {
-                e.preventDefault();
-                if (document.getElementById("lock-password").value === PASSWORD) {
-                    unlock(true);
-                } else {
-                    document.getElementById("lock-error").hidden = false;
-                }
-            });
-        })();
-    </script>
 </body>
 
 </html>
