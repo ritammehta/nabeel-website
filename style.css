@@ -16,50 +16,84 @@ body {
 }
 
 body {
+    margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .layout {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap);
-    align-items: start;
-    max-width: var(--max-width);
-    padding: 100p 20px;
-    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
+    min-height: 100vh;
 }
 
-/* Left column (image) */
-.left {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+.col {
+    padding: 40px 24px;
 }
 
-.left img {
+.col+.col {
+    border-left: 1px solid var(--accent);
+}
+
+.col h2 {
+    margin: 0 0 16px 0;
+}
+
+.col img {
     width: 100%;
-    max-width: 250px;
     height: auto;
     display: block;
     object-fit: cover;
+    margin-bottom: 16px;
 }
 
-/* Center column */
-.center header {
-    margin-bottom: 24px;
+.col p {
+    margin: 16px 0;
 }
 
 
-.center p {
-    margin: 20px 0;
+/* Password gate */
+body:has(#lock) {
+    overflow: hidden;
 }
 
-/* Right column*/
-.right h2 {
-    margin: 0 0 12px 0;
+#lock {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
 }
 
+#lock form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+#lock input {
+    border: 1px solid var(--accent);
+    padding: 8px 12px;
+    font: inherit;
+}
+
+#lock button {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 8px 16px;
+    font: inherit;
+    cursor: pointer;
+}
+
+#lock-error {
+    color: var(--muted);
+    margin: 0;
+}
 
 /* Responsive: stack on small screens */
 @media (max-width: 800px) {
@@ -68,12 +102,12 @@ body {
         padding: 24px;
     }
 
-    .left {
-        order: -1;
-        margin-bottom: 12px;
+    .col {
+        padding: 24px 0;
     }
 
-    .right {
-        margin-top: 16px;
+    .col+.col {
+        border-left: none;
+        border-top: 1px solid var(--accent);
     }
 }
